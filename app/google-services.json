@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "325666288371",
+    "firebase_url": "https://apam-cornelius.firebaseio.com",
+    "project_id": "apam-cornelius",
+    "storage_bucket": "apam-cornelius.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325666288371:android:bfaa4c31bba66ab2",
+        "android_client_info": {
+          "package_name": "tk.corneliusventi.apam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325666288371-23eirg707q0adls9mal9qcolcp4p6ijp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tk.corneliusventi.apam",
+            "certificate_hash": "ce7bf85bb75a2b1962d4495b89b44ebfe19dea47"
+          }
+        },
+        {
+          "client_id": "325666288371-2gl45olj0co0jlmqo6dke2v1016leu39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA56INMf5Ib57ywSl2OVTlpAgc3mWIzRKI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "325666288371-2gl45olj0co0jlmqo6dke2v1016leu39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

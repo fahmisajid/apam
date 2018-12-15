@@ -1,6 +1,5 @@
 package tk.corneliusventi.apam;
 
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
@@ -19,6 +18,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class WelcomeActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
@@ -28,6 +29,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+        }
+
         setTheme(R.style.WelcomeTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
@@ -110,7 +117,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void launchHomeScreen() {
-        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
         finish();
     }
 
