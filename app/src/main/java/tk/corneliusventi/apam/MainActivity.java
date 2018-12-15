@@ -5,7 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
@@ -23,22 +25,56 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
 
     public FirebaseUser user;
+    public Button signInOutButton;
+    public Button orderButton;
+    public TextView welcomeBackName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setTheme(R.style.AppTheme);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() == null) {
-            createSignInIntent();
-        } else {
-            user = auth.getCurrentUser();
-            TextView welcomeBackName = findViewById(R.id.welcome_back_name);
+        welcomeBackName = findViewById(R.id.welcome_back_name);
+        signInOutButton = findViewById(R.id.sign_inout_button);
+        orderButton = findViewById(R.id.order_button);
+
+        if (user != null){
+
             welcomeBackName.setText(user.getDisplayName());
+            signInOutButton.setText("Sign Out");
+        } else {
+            signInOutButton.setText("Sign In");
         }
+
+        signInOutButton.setOnClickListener(new Button.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (user != null) {
+                    signOut();
+                } else {
+                    createSignInIntent();
+                }
+            }
+        });
+        orderButton.setOnClickListener(new Button.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (user != null) {
+                    startActivity(new Intent(MainActivity.this, OrderActivity.class));
+                } else {
+                    Toast.makeText(MainActivity.this, "Sign In First", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
 
     }
 
@@ -75,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 user = FirebaseAuth.getInstance().getCurrentUser();
                 TextView welcomeBackName = findViewById(R.id.welcome_back_name);
                 welcomeBackName.setText(user.getDisplayName());
+                signInOutButton.setText("Sign Out");
                 // ...
             } else {
                 // Sign in failed. If response is null the user canceled the
@@ -86,13 +123,14 @@ public class MainActivity extends AppCompatActivity {
     }
     // [END auth_fui_result]
 
-    public void signOut(View view) {
+    public void signOut() {
         // [START auth_fui_signout]
         AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
-                        startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+                        startActivity(new Intent(MainActivity.this, LaunchActivity.class));
+                        finish();
                     }
                 });
         // [END auth_fui_signout]

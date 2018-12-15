@@ -31,9 +31,25 @@
             android:id="@+id/welcome_back_name"/>
     </LinearLayout>
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Out"
-        android:onClick="signOut"/>
+        android:orientation="vertical">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/order_button"
+            android:text="Order"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"
+            android:layout_margin="5sp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:id="@+id/sign_inout_button"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"
+            android:layout_margin="5sp"/>
+    </LinearLayout>
 </LinearLayout>

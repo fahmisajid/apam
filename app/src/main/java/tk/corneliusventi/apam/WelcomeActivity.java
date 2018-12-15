@@ -33,6 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+            finish();
         }
 
         setTheme(R.style.WelcomeTheme);
